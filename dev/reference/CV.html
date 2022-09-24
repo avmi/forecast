@@ -19,7 +19,7 @@ R^2 values for a linear model."><meta property="og:image" content="/logo.png"><m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">forecast</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">8.16.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">8.17.0.9000</span>
       </span>
     </div>
 
@@ -60,17 +60,20 @@ R^2 values for a linear model.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">CV</span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CV</span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>obj</dt>
 <dd><p>output from <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code> or <code><a href="tslm.html">tslm</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Numerical vector containing CV, AIC, AICc, BIC and AdjR2 values.</p>
+    
+
+<p>Numerical vector containing CV, AIC, AICc, BIC and AdjR2 values.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -83,17 +86,17 @@ R^2 values for a linear model.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">120</span>,<span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fl">20</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">120</span><span class="op">)</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span>, frequency<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="tslm.html">tslm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">trend</span> <span class="op">+</span> <span class="va">season</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="tslm.html">tslm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">season</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">CV</span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">120</span>,<span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fl">20</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">120</span><span class="op">)</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span>, frequency<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="tslm.html">tslm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">trend</span> <span class="op">+</span> <span class="va">season</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="tslm.html">tslm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">season</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">CV</span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          CV         AIC        AICc         BIC       AdjR2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  10.4610741 282.4705837 286.4705837 321.4954681   0.9582509 </span>
-<span class="r-in"><span class="fu">CV</span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  11.9865110 298.5862174 302.5862174 337.6111018   0.9485339 </span>
+<span class="r-in"><span><span class="fu">CV</span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          CV         AIC        AICc         BIC       AdjR2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  10.4884357 282.7462705 286.1802327 318.9836631   0.9578456 </span>
-<span class="r-in"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  11.8151032 297.0389135 300.4728758 333.2763062   0.9488177 </span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -108,7 +111,7 @@ R^2 values for a linear model.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
