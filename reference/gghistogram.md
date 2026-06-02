@@ -10,7 +10,7 @@ gghistogram(
   add.normal = FALSE,
   add.kde = FALSE,
   add.rug = TRUE,
-  bins,
+  bins = NULL,
   boundary = 0
 )
 ```
@@ -59,6 +59,7 @@ Rob J Hyndman
 ## Examples
 
 ``` r
+
 gghistogram(lynx, add.kde = TRUE)
 
 ```

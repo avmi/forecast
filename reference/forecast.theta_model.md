@@ -33,6 +33,7 @@ thetaf(
   fan = FALSE,
   lambda = NULL,
   biasadj = FALSE,
+  type = c("multiplicative", "additive"),
   x = y,
   ...
 )
@@ -81,6 +82,11 @@ thetaf(
 - y:
 
   a numeric vector or univariate time series of class `ts`
+
+- type:
+
+  Type of seasonal decomposition. Either `"multiplicative"` (default) or
+  `"additive"`.
 
 - x:
 
