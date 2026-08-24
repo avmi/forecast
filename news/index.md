@@ -2,18 +2,55 @@
 
 ## forecast (development version)
 
+- [`auto.arima()`](https://pkg.robjhyndman.com/forecast/reference/auto.arima.md)
+  parallel model search (`stepwise = FALSE`) now works on Windows
+  ([\#1187](https://github.com/robjhyndman/forecast/issues/1187)).
+- [`auto.arima()`](https://pkg.robjhyndman.com/forecast/reference/auto.arima.md)
+  now truncates `xreg` together with the series when
+  `approximation = TRUE` and `truncate` is set, so model selection no
+  longer fails.
+- [`autolayer()`](https://ggplot2.tidyverse.org/reference/autolayer.html)
+  now labels an unnamed `msts` series with the name of the object
+  instead of “NULL”.
 - [`autoplot.forecast()`](https://pkg.robjhyndman.com/forecast/reference/plot.forecast.md)
   no longer errors for cross-sectional regression models fitted without
   an intercept.
 - [`bld.mbb.bootstrap()`](https://pkg.robjhyndman.com/forecast/reference/bld.mbb.bootstrap.md)
   no longer errors when `num = 1` and now validates that `num` is a
   positive integer.
+- [`croston_model()`](https://pkg.robjhyndman.com/forecast/reference/croston_model.md)
+  and
+  [`croston()`](https://pkg.robjhyndman.com/forecast/reference/forecast.croston_model.md)
+  can now optimize and separately specify Croston smoothing parameters.
+- [`croston_model()`](https://pkg.robjhyndman.com/forecast/reference/croston_model.md)
+  now returns `NA` for fitted values before the first non-zero demand
+  instead of 0.
 - [`forecast.Arima()`](https://pkg.robjhyndman.com/forecast/reference/forecast.Arima.md)
   now correctly passes `xreg` when `bootstrap = TRUE`
   ([\#1115](https://github.com/robjhyndman/forecast/issues/1115)).
+- [`forecast.ets()`](https://pkg.robjhyndman.com/forecast/reference/forecast.ets.md)
+  now uses the supplied `innov` matrix when `simulate = TRUE` instead of
+  silently ignoring it.
+- [`forecast.ets()`](https://pkg.robjhyndman.com/forecast/reference/forecast.ets.md)
+  now gives the intended error message when forecasting fails for a
+  multiplicative trend model.
+- [`mstl()`](https://pkg.robjhyndman.com/forecast/reference/mstl.md) now
+  drops short seasonal periods from the `msts` attribute, so
+  [`forecast.stlm()`](https://pkg.robjhyndman.com/forecast/reference/forecast.stl.md)
+  no longer errors.
+- [`meanf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.mean_model.md)
+  no longer errors with `bootstrap = TRUE` when a single confidence
+  level is supplied.
 - [`nsdiffs()`](https://pkg.robjhyndman.com/forecast/reference/nsdiffs.md)
   now ignores extra arguments passed via `...` with `test = "seas"`
   instead of silently returning 0.
+- [`print()`](https://rdrr.io/r/base/print.html) for
+  [`Arima()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md)
+  models now displays the stored AICc and BIC values instead of
+  recomputing them, which gave slightly different results for series
+  with interior missing values.
+- [`subset()`](https://rdrr.io/r/base/subset.html) no longer ignores the
+  `subset` argument for `msts` objects.
 - [`theta_model()`](https://pkg.robjhyndman.com/forecast/reference/theta_model.md)
   and
   [`thetaf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.theta_model.md)
