@@ -58,35 +58,71 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="forecast-development-version">forecast (development version)<a class="anchor" aria-label="anchor" href="#forecast-development-version"></a></h2>
 <ul><li>
+<code><a href="../reference/arfima.html">arfima()</a></code>, <code><a href="../reference/Arima.html">Arima()</a></code>, <code><a href="../reference/auto.arima.html">auto.arima()</a></code>, <code><a href="../reference/forecast.croston_model.html">croston()</a></code>, <code><a href="../reference/ses.html">holt()</a></code>, <code><a href="../reference/ses.html">hw()</a></code>, <code><a href="../reference/forecast.mean_model.html">meanf()</a></code>, <code><a href="../reference/modelAR.html">modelAR()</a></code>, <code><a href="../reference/forecast.rw_model.html">naive()</a></code>, <code><a href="../reference/nnetar.html">nnetar()</a></code>, <code><a href="../reference/forecast.rw_model.html">rwf()</a></code>, <code><a href="../reference/ses.html">ses()</a></code>, <code><a href="../reference/forecast.rw_model.html">snaive()</a></code>, <code><a href="../reference/forecast.spline_model.html">splinef()</a></code>, <code><a href="../reference/forecast.stl.html">stlf()</a></code>, <code><a href="../reference/stlm.html">stlm()</a></code> and <code><a href="../reference/forecast.theta_model.html">thetaf()</a></code> now keep the series name when it is supplied via the deprecated <code>x</code> argument.</li>
+<li>
 <code><a href="../reference/auto.arima.html">auto.arima()</a></code> parallel model search (<code>stepwise = FALSE</code>) now works on Windows (<a href="https://github.com/robjhyndman/forecast/issues/1187" class="external-link">#1187</a>).</li>
 <li>
 <code><a href="../reference/auto.arima.html">auto.arima()</a></code> now truncates <code>xreg</code> together with the series when <code>approximation = TRUE</code> and <code>truncate</code> is set, so model selection no longer fails.</li>
 <li>
+<code><a href="../reference/auto.arima.html">auto.arima()</a></code> stepwise search now searches models without a constant when the null model without one is best.</li>
+<li>
+<code><a href="../reference/Arima.html">Arima()</a></code>, <code><a href="../reference/ses.html">holt()</a></code>, <code><a href="../reference/ses.html">hw()</a></code>, <code><a href="../reference/modelAR.html">modelAR()</a></code>, <code><a href="../reference/nnetar.html">nnetar()</a></code> and <code><a href="../reference/forecast.theta_model.html">thetaf()</a></code> no longer error when the series is supplied via the deprecated <code>x</code> argument.</li>
+<li>
 <code><a href="https://ggplot2.tidyverse.org/reference/autolayer.html" class="external-link">autolayer()</a></code> now labels an unnamed <code>msts</code> series with the name of the object instead of “NULL”.</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/autolayer.html" class="external-link">autolayer()</a></code> for <code>mts</code> and <code>mforecast</code> objects no longer errors when arguments are local variables.</li>
 <li>
 <code><a href="../reference/plot.forecast.html">autoplot.forecast()</a></code> no longer errors for cross-sectional regression models fitted without an intercept.</li>
 <li>
+<code><a href="../reference/autoplot.acf.html">autoplot.mpacf()</a></code>, used by <code><a href="../reference/autoplot.acf.html">ggtaperedacf()</a></code>, no longer inverts the significance legend.</li>
+<li>
+<code><a href="../reference/plot.bats.html">autoplot.tbats()</a></code> no longer errors.</li>
+<li>
 <code><a href="../reference/bld.mbb.bootstrap.html">bld.mbb.bootstrap()</a></code> no longer errors when <code>num = 1</code> and now validates that <code>num</code> is a positive integer.</li>
+<li>
+<code><a href="../reference/CVar.html">CVar()</a></code> now computes fold accuracy with fitted and actual values in the correct order.</li>
 <li>
 <code><a href="../reference/croston_model.html">croston_model()</a></code> and <code><a href="../reference/forecast.croston_model.html">croston()</a></code> can now optimize and separately specify Croston smoothing parameters.</li>
 <li>
 <code><a href="../reference/croston_model.html">croston_model()</a></code> now returns <code>NA</code> for fitted values before the first non-zero demand instead of 0.</li>
 <li>
+<code><a href="../reference/ets.html">ets()</a></code> now keeps the series name for short series.</li>
+<li>
 <code><a href="../reference/forecast.Arima.html">forecast.Arima()</a></code> now correctly passes <code>xreg</code> when <code>bootstrap = TRUE</code> (<a href="https://github.com/robjhyndman/forecast/issues/1115" class="external-link">#1115</a>).</li>
+<li>
+<code><a href="../reference/forecast.StructTS.html">forecast.StructTS()</a></code> now uses the series frequency for its default forecast horizon.</li>
 <li>
 <code><a href="../reference/forecast.ets.html">forecast.ets()</a></code> now uses the supplied <code>innov</code> matrix when <code>simulate = TRUE</code> instead of silently ignoring it.</li>
 <li>
 <code><a href="../reference/forecast.ets.html">forecast.ets()</a></code> now gives the intended error message when forecasting fails for a multiplicative trend model.</li>
 <li>
+<code><a href="../reference/forecast.ts.html">forecast.ts()</a></code> now keeps the series name in more cases.</li>
+<li>
+<code>forecast.varest()</code> now supports <code>fan = TRUE</code> and <code>level</code> values between 0 and 1.</li>
+<li>
+<code><a href="../reference/geom_forecast.html">geom_forecast()</a></code> no longer errors for forecast objects when forecast is not attached.</li>
+<li>
+<code><a href="../reference/autoplot.acf.html">ggtaperedacf()</a></code> no longer errors when forecast is not attached.</li>
+<li>
+<code><a href="../reference/tsdisplay.html">ggtsdisplay()</a></code> shows the series name as the default title again.</li>
+<li>
 <code><a href="../reference/mstl.html">mstl()</a></code> now drops short seasonal periods from the <code>msts</code> attribute, so <code><a href="../reference/forecast.stl.html">forecast.stlm()</a></code> no longer errors.</li>
 <li>
 <code><a href="../reference/forecast.mean_model.html">meanf()</a></code> no longer errors with <code>bootstrap = TRUE</code> when a single confidence level is supplied.</li>
 <li>
+<code><a href="../reference/forecast.mean_model.html">meanf()</a></code> no longer errors when <code>lambda = "auto"</code>.</li>
+<li>
 <code><a href="../reference/nsdiffs.html">nsdiffs()</a></code> now ignores extra arguments passed via <code>...</code> with <code>test = "seas"</code> instead of silently returning 0.</li>
+<li>
+<code><a href="../reference/ocsb.test.html">ocsb.test()</a></code> lag selection now considers lag 0 and returns the lag that minimises the criterion.</li>
 <li>
 <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> for <code><a href="../reference/Arima.html">Arima()</a></code> models now displays the stored AICc and BIC values instead of recomputing them, which gave slightly different results for series with interior missing values.</li>
 <li>
+<code><a href="../reference/forecast.spline_model.html">splinef()</a></code> and <code><a href="../reference/forecast.theta_model.html">thetaf()</a></code> now return the series name instead of “x”.</li>
+<li>
 <code><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset()</a></code> no longer ignores the <code>subset</code> argument for <code>msts</code> objects.</li>
+<li>
+<code><a href="../reference/tbats.html">tbats()</a></code> results no longer depend on the order of <code>seasonal.periods</code>, and the harmonic search now retains <code>k = 1</code> when it minimizes AIC.</li>
 <li>
 <code><a href="../reference/theta_model.html">theta_model()</a></code> and <code><a href="../reference/forecast.theta_model.html">thetaf()</a></code> gained a <code>type</code> argument to select additive or multiplicative seasonal decomposition.</li>
 </ul></div>
@@ -333,7 +369,7 @@
 </li>
 <li>Better bias adjustment support after Box-Cox transformation</li>
 <li>
-<code><a href="../reference/Arima.html">print.ARIMA()</a></code> has better labelling of constants</li>
+<code>print.ARIMA()</code> has better labelling of constants</li>
 <li>Bug fixes</li>
 <li>Removed fortify method for forecast objects</li>
 </ul></div>
@@ -441,7 +477,7 @@
 <ul><li>Improved documentation of <code><a href="https://generics.r-lib.org/reference/accuracy.html" class="external-link">accuracy()</a></code> function.</li>
 <li>Fixed occasional bug in <code><a href="https://generics.r-lib.org/reference/accuracy.html" class="external-link">accuracy()</a></code> when test set is a single observation.</li>
 <li>Improved <code><a href="../reference/Acf.html">Acf()</a></code> to give better handling of horizontal axis for seasonal data or when … is passed.</li>
-<li>Removed <code>print.Arima()</code> and <code>predict.Arima()</code> and added <code><a href="../reference/Arima.html">print.ARIMA()</a></code>
+<li>Removed <code>print.Arima()</code> and <code>predict.Arima()</code> and added <code>print.ARIMA()</code>
 </li>
 <li>method argument now passed when re-fitting an ARIMA model.</li>
 <li>Fixed error when CH test applied to short series</li>
@@ -1184,7 +1220,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="http://robjhyndman.com" class="external-link">Rob Hyndman</a>, George Athanasopoulos, <a href="https://github.com/cbergmeir" class="external-link">Christoph Bergmeir</a>, <a href="https://github.com/gabrielcaceres" class="external-link">Gabriel Caceres</a>, Leanne Chhay, Kirill Kuroptev, <a href="https://github.com/m-muecke" class="external-link">Maximilian Mücke</a>, <a href="https://github.com/mitchelloharawild" class="external-link">Mitchell O’Hara-Wild</a>, <a href="http://fpetropoulos.eu" class="external-link">Fotios Petropoulos</a>, <a href="https://github.com/slavarazbash" class="external-link">Slava Razbash</a>, <a href="http://earo.me" class="external-link">Earo Wang</a>, Farah Yasmeen.</p>
+  <p>Developed by <a href="https://robjhyndman.com" class="external-link">Rob Hyndman</a>, George Athanasopoulos, <a href="https://github.com/cbergmeir" class="external-link">Christoph Bergmeir</a>, <a href="https://github.com/gabrielcaceres" class="external-link">Gabriel Caceres</a>, Leanne Chhay, Kirill Kuroptev, <a href="https://github.com/m-muecke" class="external-link">Maximilian Mücke</a>, <a href="https://github.com/mitchelloharawild" class="external-link">Mitchell O’Hara-Wild</a>, <a href="http://fpetropoulos.eu" class="external-link">Fotios Petropoulos</a>, <a href="https://github.com/slavarazbash" class="external-link">Slava Razbash</a>, <a href="https://earo.me" class="external-link">Earo Wang</a>, Farah Yasmeen.</p>
 </div>
 
 <div class="pkgdown-footer-right">

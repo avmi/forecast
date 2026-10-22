@@ -2,6 +2,25 @@
 
 ## forecast (development version)
 
+- [`arfima()`](https://pkg.robjhyndman.com/forecast/reference/arfima.md),
+  [`Arima()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md),
+  [`auto.arima()`](https://pkg.robjhyndman.com/forecast/reference/auto.arima.md),
+  [`croston()`](https://pkg.robjhyndman.com/forecast/reference/forecast.croston_model.md),
+  [`holt()`](https://pkg.robjhyndman.com/forecast/reference/ses.md),
+  [`hw()`](https://pkg.robjhyndman.com/forecast/reference/ses.md),
+  [`meanf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.mean_model.md),
+  [`modelAR()`](https://pkg.robjhyndman.com/forecast/reference/modelAR.md),
+  [`naive()`](https://pkg.robjhyndman.com/forecast/reference/forecast.rw_model.md),
+  [`nnetar()`](https://pkg.robjhyndman.com/forecast/reference/nnetar.md),
+  [`rwf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.rw_model.md),
+  [`ses()`](https://pkg.robjhyndman.com/forecast/reference/ses.md),
+  [`snaive()`](https://pkg.robjhyndman.com/forecast/reference/forecast.rw_model.md),
+  [`splinef()`](https://pkg.robjhyndman.com/forecast/reference/forecast.spline_model.md),
+  [`stlf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.stl.md),
+  [`stlm()`](https://pkg.robjhyndman.com/forecast/reference/stlm.md) and
+  [`thetaf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.theta_model.md)
+  now keep the series name when it is supplied via the deprecated `x`
+  argument.
 - [`auto.arima()`](https://pkg.robjhyndman.com/forecast/reference/auto.arima.md)
   parallel model search (`stepwise = FALSE`) now works on Windows
   ([\#1187](https://github.com/robjhyndman/forecast/issues/1187)).
@@ -9,15 +28,39 @@
   now truncates `xreg` together with the series when
   `approximation = TRUE` and `truncate` is set, so model selection no
   longer fails.
+- [`auto.arima()`](https://pkg.robjhyndman.com/forecast/reference/auto.arima.md)
+  stepwise search now searches models without a constant when the null
+  model without one is best.
+- [`Arima()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md),
+  [`holt()`](https://pkg.robjhyndman.com/forecast/reference/ses.md),
+  [`hw()`](https://pkg.robjhyndman.com/forecast/reference/ses.md),
+  [`modelAR()`](https://pkg.robjhyndman.com/forecast/reference/modelAR.md),
+  [`nnetar()`](https://pkg.robjhyndman.com/forecast/reference/nnetar.md)
+  and
+  [`thetaf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.theta_model.md)
+  no longer error when the series is supplied via the deprecated `x`
+  argument.
 - [`autolayer()`](https://ggplot2.tidyverse.org/reference/autolayer.html)
   now labels an unnamed `msts` series with the name of the object
   instead of “NULL”.
+- [`autolayer()`](https://ggplot2.tidyverse.org/reference/autolayer.html)
+  for `mts` and `mforecast` objects no longer errors when arguments are
+  local variables.
 - [`autoplot.forecast()`](https://pkg.robjhyndman.com/forecast/reference/plot.forecast.md)
   no longer errors for cross-sectional regression models fitted without
   an intercept.
+- [`autoplot.mpacf()`](https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.md),
+  used by
+  [`ggtaperedacf()`](https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.md),
+  no longer inverts the significance legend.
+- [`autoplot.tbats()`](https://pkg.robjhyndman.com/forecast/reference/plot.bats.md)
+  no longer errors.
 - [`bld.mbb.bootstrap()`](https://pkg.robjhyndman.com/forecast/reference/bld.mbb.bootstrap.md)
   no longer errors when `num = 1` and now validates that `num` is a
   positive integer.
+- [`CVar()`](https://pkg.robjhyndman.com/forecast/reference/CVar.md) now
+  computes fold accuracy with fitted and actual values in the correct
+  order.
 - [`croston_model()`](https://pkg.robjhyndman.com/forecast/reference/croston_model.md)
   and
   [`croston()`](https://pkg.robjhyndman.com/forecast/reference/forecast.croston_model.md)
@@ -25,15 +68,29 @@
 - [`croston_model()`](https://pkg.robjhyndman.com/forecast/reference/croston_model.md)
   now returns `NA` for fitted values before the first non-zero demand
   instead of 0.
+- [`ets()`](https://pkg.robjhyndman.com/forecast/reference/ets.md) now
+  keeps the series name for short series.
 - [`forecast.Arima()`](https://pkg.robjhyndman.com/forecast/reference/forecast.Arima.md)
   now correctly passes `xreg` when `bootstrap = TRUE`
   ([\#1115](https://github.com/robjhyndman/forecast/issues/1115)).
+- [`forecast.StructTS()`](https://pkg.robjhyndman.com/forecast/reference/forecast.StructTS.md)
+  now uses the series frequency for its default forecast horizon.
 - [`forecast.ets()`](https://pkg.robjhyndman.com/forecast/reference/forecast.ets.md)
   now uses the supplied `innov` matrix when `simulate = TRUE` instead of
   silently ignoring it.
 - [`forecast.ets()`](https://pkg.robjhyndman.com/forecast/reference/forecast.ets.md)
   now gives the intended error message when forecasting fails for a
   multiplicative trend model.
+- [`forecast.ts()`](https://pkg.robjhyndman.com/forecast/reference/forecast.ts.md)
+  now keeps the series name in more cases.
+- `forecast.varest()` now supports `fan = TRUE` and `level` values
+  between 0 and 1.
+- [`geom_forecast()`](https://pkg.robjhyndman.com/forecast/reference/geom_forecast.md)
+  no longer errors for forecast objects when forecast is not attached.
+- [`ggtaperedacf()`](https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.md)
+  no longer errors when forecast is not attached.
+- [`ggtsdisplay()`](https://pkg.robjhyndman.com/forecast/reference/tsdisplay.md)
+  shows the series name as the default title again.
 - [`mstl()`](https://pkg.robjhyndman.com/forecast/reference/mstl.md) now
   drops short seasonal periods from the `msts` attribute, so
   [`forecast.stlm()`](https://pkg.robjhyndman.com/forecast/reference/forecast.stl.md)
@@ -41,16 +98,28 @@
 - [`meanf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.mean_model.md)
   no longer errors with `bootstrap = TRUE` when a single confidence
   level is supplied.
+- [`meanf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.mean_model.md)
+  no longer errors when `lambda = "auto"`.
 - [`nsdiffs()`](https://pkg.robjhyndman.com/forecast/reference/nsdiffs.md)
   now ignores extra arguments passed via `...` with `test = "seas"`
   instead of silently returning 0.
+- [`ocsb.test()`](https://pkg.robjhyndman.com/forecast/reference/ocsb.test.md)
+  lag selection now considers lag 0 and returns the lag that minimises
+  the criterion.
 - [`print()`](https://rdrr.io/r/base/print.html) for
   [`Arima()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md)
   models now displays the stored AICc and BIC values instead of
   recomputing them, which gave slightly different results for series
   with interior missing values.
+- [`splinef()`](https://pkg.robjhyndman.com/forecast/reference/forecast.spline_model.md)
+  and
+  [`thetaf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.theta_model.md)
+  now return the series name instead of “x”.
 - [`subset()`](https://rdrr.io/r/base/subset.html) no longer ignores the
   `subset` argument for `msts` objects.
+- [`tbats()`](https://pkg.robjhyndman.com/forecast/reference/tbats.md)
+  results no longer depend on the order of `seasonal.periods`, and the
+  harmonic search now retains `k = 1` when it minimizes AIC.
 - [`theta_model()`](https://pkg.robjhyndman.com/forecast/reference/theta_model.md)
   and
   [`thetaf()`](https://pkg.robjhyndman.com/forecast/reference/forecast.theta_model.md)
@@ -478,8 +547,7 @@ CRAN release: 2017-02-23
   [`arfima()`](https://pkg.robjhyndman.com/forecast/reference/arfima.md)
   and [`stlm()`](https://pkg.robjhyndman.com/forecast/reference/stlm.md)
 - Better bias adjustment support after Box-Cox transformation
-- [`print.ARIMA()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md)
-  has better labelling of constants
+- `print.ARIMA()` has better labelling of constants
 - Bug fixes
 - Removed fortify method for forecast objects
 
@@ -672,7 +740,7 @@ CRAN release: 2015-02-26
   give better handling of horizontal axis for seasonal data or when … is
   passed.
 - Removed `print.Arima()` and `predict.Arima()` and added
-  [`print.ARIMA()`](https://pkg.robjhyndman.com/forecast/reference/Arima.md)
+  `print.ARIMA()`
 - method argument now passed when re-fitting an ARIMA model.
 - Fixed error when CH test applied to short series
 
